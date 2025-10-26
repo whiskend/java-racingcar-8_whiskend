@@ -22,4 +22,22 @@ public class InputView {
             }
         }
     }
+
+    public static int parseTryCount (String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("시도 횟수를 입력해주세요.");
+        }
+        final String trimmed = input.trim();
+        try{
+            return Integer.parseInt(trimmed);
+        } catch (NumberFormatException e){
+            throw new IllegalArgumentException("시도 횟수는 정수여야 합니다.");
+        }
+    }
+
+    public static void validateTryCount(int tryCount) {
+        if (tryCount <= 0) {
+            throw new IllegalArgumentException("시도 횟수는 1 이상의 정수여야 합니다.");
+        }
+    }
 }

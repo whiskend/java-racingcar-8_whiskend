@@ -14,7 +14,9 @@ public class Application {
         InputView.validateCarNames(carNames);
 
         System.out.println("시도할 횟수는 몇 회인가요?");
-        String numberOccurrences = Console.readLine();
+        String tryCountInput = Console.readLine();
+        int tryCount = InputView.parseTryCount(tryCountInput);
+        InputView.validateTryCount(tryCount);
 
         System.out.println("\n실행 결과");
     }
