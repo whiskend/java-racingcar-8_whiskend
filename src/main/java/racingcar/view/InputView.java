@@ -9,10 +9,16 @@ public class InputView {
     }
 
     public static List<String> parseCarNames(String input) {
+        if (input == null) {
+            throw new IllegalArgumentException("자동차 이름을 입력해주세요.");
+        }
         return Arrays.stream(input.split(",")).map(String::trim).collect(Collectors.toList());
     }
 
     public static void validateCarNames(List<String> carNames) {
+        if (carNames == null || carNames.isEmpty()) {
+            throw new IllegalArgumentException("자동차 이름은 최소 1개 이상이어야 합니다.");
+        }
         for (String name : carNames) {
             if (name == null || name.isEmpty()) {
                 throw new IllegalArgumentException("자동차 이름은 비어 있을 . 없습니다.");
