@@ -9,6 +9,7 @@
    - 예: (실행 결과 \n pobi : --)
  - 최종 우승자를 출력한다. 공동 우승자가 발생할 경우 쉼표를 찍어 동시에 출력한다.
     - 최종 우승자 : {자동차이름} || 최종 우승자 : {자동차이름1, 자동차이름2, ...}
+ - 모든 입력값 검증 실패 시 IllegalArgumentException 발생
 ## 2. 검증
 - 자동차 이름 유효성 검사
   - 이름의 길이가 1~5 글자가 아니라면 IllegalArgumentException을 발생시킨 후 종료. (System.exit()를 호출하지 않는다.)
@@ -29,7 +30,18 @@
 - Race: 라운드 진행/상태 관리
   - playRound(): Cars에게 전진 명령을 내려 한 라운드 진행
   - isFinished(): 모든 라운드가 종료되었는지 확인
-  - getWinners(): 최종 우승자 목록 반환
 - Cars: 자동차 컬렉션
   - 입력된 자동차 목록의 중복/개수/형식 검증
-  - moveAll(): 모든 자동차에 전진 명령 일괄 수행
+  - moveAll(policy): 전진 규칙(policy)에 따라 모든 자동차 이동
+  - getLeaders(): 최종 우승자 목록 반환
+## 4. 뷰 & 컨트롤러
+- InputView: 입력값 파싱 및 검증
+- OutputView: 실행 결과 출력(printResultHeader(), printRound(), printWinners())
+- GameController: 전체 게임 진행 흐름 관리
+- Application: 프로그램 실행 진입점
+
+## 테스트
+- CarTest: 이름 검증, 이동 동작
+- CarsTest: 중복/빈목록 검증, 일괄 이동, 공동 우승자 계산
+- RacingRuleTest: 랜덤값 4이상/미만 조건 테스트
+- InputValidationTest: 이름 횟수 파싱 및 예외 검증
